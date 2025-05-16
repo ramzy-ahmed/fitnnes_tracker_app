@@ -17,17 +17,14 @@ A simple and professional fitness tracking app that helps you log your workouts,
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshot/screen1.Jpg" width="250"/>
-  <img src="screenshot/screen2.png" width="250"/>
-  <img src="screenshot/screen3.png" width="250"/>
-  <img src="screenshot/screen4.png" width="250"/>
-  <img src="screenshot/screen5.png" width="250"/>
-  <img src="screenshot/screen6.png" width="250"/>
-  <img src="screenshot/screen7.png" width="250"/>
+  <img src="screenshot/screen1.jpg" width="250"/>
+  <img src="screenshot/screen2.jpg" width="250"/>
+  <img src="screenshot/screen3.jpg" width="250"/>
+  <img src="screenshot/screen4.jpg" width="250"/>
+  <img src="screenshot/screen5.jpg" width="250"/>
+  <img src="screenshot/screen6.jpg" width="250"/>
+  <img src="screenshot/screen7.jpg" width="250"/>
 </p>
-
-> **Note:** Make sure to add actual screenshots inside the `screenshots` folder in the repository.
-
 ---
 
 ## 🧰 Tech Stack
