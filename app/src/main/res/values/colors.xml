@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#E30C00</color>
+    <color name="colorError">#F44336</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="running_color">#4CAF50</color>
+    <color name="cycling_color">#2196F3</color>
+    <color name="walking_color">#9C27B0</color>
+    <color name="weight_color">#FF9800</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="dividerColor">#BDBDBD</color>
+    <color name="background">#030303</color>
+
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#347CC0</color>
+    <color name="colorPrimaryLight">#6DE5DE</color>
+    <color name="colorPrimaryDark">#123C9A</color>
+
+    <!-- Secondary Colors -->
+    <color name="colorSecondary">#4CAF50</color>
+    <color name="colorSecondaryLight">#C8E6C9</color>
+    <color name="colorSecondaryDark">#388E3C</color>
+
+    <!-- Background Colors -->
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="surfaceColor">#FAFAFA</color>
+    <!-- Text Colors -->
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#757575</color>
+
+    <!-- Others -->
+    <color name="white_opacity_80">#CCFFFFFF</color>
+    <color name="grey">#808080</color>
+</resources>
