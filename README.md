@@ -17,13 +17,13 @@ A simple and professional fitness tracking app that helps you log your workouts,
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshot/screen1.jpg" width="250"/>
-  <img src="screenshot/screen2.jpg" width="250"/>
-  <img src="screenshot/screen3.jpg" width="250"/>
-  <img src="screenshot/screen4.jpg" width="250"/>
-  <img src="screenshot/screen5.jpg" width="250"/>
-  <img src="screenshot/screen6.jpg" width="250"/>
-  <img src="screenshot/screen7.jpg" width="250"/>
+  <img src="Screenshot/screen1.jpg" width="240"/>
+  <img src="Screenshot/screen2.jpg" width="240"/>
+  <img src="Screenshot/screen3.jpg" width="240"/>
+  <img src="Screenshot/screen4.jpg" width="240"/>
+  <img src="Screenshot/screen5.jpg" width="240"/>
+  <img src="Screenshot/screen6.jpg" width="240"/>
+  <img src="Screenshot/screen7.jpg" width="240"/>
 </p>
 ---
 
