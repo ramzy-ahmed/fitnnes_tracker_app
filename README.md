@@ -45,7 +45,7 @@ This project is currently **closed source**. Contributions, forks, or reuse of a
 ## 🔒 License
 
 ```
-© 2025 Your Name. All rights reserved.
+© 2025 Ramzy Ahmed. All rights reserved.
 
 This project is protected by copyright law.
 
