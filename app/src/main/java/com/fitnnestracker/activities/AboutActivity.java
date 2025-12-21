@@ -12,15 +12,19 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fitnnestracker.R;
+import com.fitnnestracker.databinding.ActivityIntroBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class AboutActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
     private TextView versionText;
 
+    ActivityIntroBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
+        binding = ActivityIntroBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
