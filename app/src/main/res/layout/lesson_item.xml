@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="12dp"
+    android:background="@drawable/workout_item_bg"
+    android:layout_height="75dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/picUrl"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="6dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pic_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedCorners" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/picUrl"
+        app:layout_constraintTop_toTopOf="@+id/picUrl" />
+
+    <TextView
+        android:id="@+id/WorkoutDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20:12"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/picUrl"
+        app:layout_constraintStart_toStartOf="@+id/Title"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/StartWorkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/play" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

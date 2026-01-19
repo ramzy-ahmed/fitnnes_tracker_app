@@ -1,98 +1,58 @@
-package com.fitnnestracker.adapters;
+package com.fitnnestracker.adapters
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.fitnnestracker.activities.WorkoutActivity
+import com.fitnnestracker.databinding.WorkoutItemBinding
+import com.fitnnestracker.models.Workout
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class WorkoutAdapter(private val workoutList: ArrayList<Workout?>) :
+    RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder?>() {
+    private var context: Context? = null
 
-import com.fitnnestracker.R;
-import com.fitnnestracker.models.Workout;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> {
-
-    private final List<Workout> workouts;
-
-    public WorkoutAdapter(List<Workout> workouts) {
-        this.workouts = workouts;
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
+        context = parent.context
+        val binding =
+            WorkoutItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return WorkoutViewHolder(binding)
     }
 
-    @NonNull
-    @Override
-    public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_workout, parent, false);
-        return new WorkoutViewHolder(view);
-    }
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
-        Workout workout = workouts.get(position);
-
-        holder.workoutType.setText(workout.getType());
-        holder.workoutDuration.setText(workout.getDuration() + " min");
-        holder.workoutCalories.setText(workout.getCalories() + " Kcal");
-        holder.workoutDate.setText(getFormattedDate(workout.getDate()));
+    @SuppressLint("DiscouragedApi")
+    override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
+        holder.binding.Title.text = workoutList[position]!!.title
+        holder.binding.WorkoutDuration.text =workoutList[position]!!.duration + "min"
+        holder.binding.CaloriesCount.text = workoutList[position]!!.calories + "Kal"
+        holder.binding.ExerciseCount.text = workoutList[position]!!.lesson.size.toString() + "Exercise"
 
 
-        int iconRes = getIconForWorkoutType(workout.getType());
-        holder.workoutIcon.setImageResource(iconRes);
-    }
+        val resId = context!!.resources.getIdentifier(
+            workoutList[position]!!.picUrl,
+            "drawable",
+            context!!.packageName
+        )
 
-    @Override
-    public int getItemCount() {
-        return workouts.size();
-    }
+        Glide.with(holder.itemView.context)
+            .load(resId)
+            .into(holder.binding.picUrl)
 
-    private String getFormattedDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM", Locale.getDefault());
-        return sdf.format(date);
-    }
-
-    private int getIconForWorkoutType(String type) {
-        switch (type) {
-            case "Running": return R.drawable.ic_running;
-            case "Walking": return R.drawable.ic_walking;
-            case "Cycling": return R.drawable.ic_cycling;
-            case "Swimming": return R.drawable.ic_swimming;
-            case "Strength": return R.drawable.ic_strength;
-            case "Yoga": return R.drawable.ic_yoga;
-            case "Cardio": return R.drawable.ic_cardio;
-            default: return R.drawable.ic_exercise;
+        holder.binding.root.setOnClickListener { v: View? ->
+            val intent = Intent(context, WorkoutActivity::class.java)
+            intent.putExtra("object", workoutList[position])
+            context!!.startActivity(intent)
         }
     }
 
-    public static class WorkoutViewHolder extends RecyclerView.ViewHolder {
-        ImageView workoutIcon;
-        TextView workoutType, workoutDuration, workoutCalories, workoutDate;
-
-        public WorkoutViewHolder(@NonNull View itemView) {
-            super(itemView);
-            workoutIcon = itemView.findViewById(R.id.workout_icon);
-            workoutType = itemView.findViewById(R.id.workout_type);
-            workoutDuration = itemView.findViewById(R.id.workout_duration);
-            workoutCalories = itemView.findViewById(R.id.workout_calories);
-            workoutDate = itemView.findViewById(R.id.workout_date);
-        }
-    }
-    public Workout getWorkoutAtPosition(int position) {
-        return workouts.get(position);
+    override fun getItemCount(): Int {
+        return workoutList.size
     }
 
-    public void removeWorkoutAtPosition(int position) {
-        workouts.remove(position);
-        notifyItemRemoved(position);
-    }
-
+    class WorkoutViewHolder(val binding: WorkoutItemBinding) : RecyclerView.ViewHolder(
+        binding.root
+    )
 }

@@ -1,97 +1,109 @@
-package com.fitnnestracker.activities;
+package com.fitnnestracker.activities
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.os.Bundle
+import android.view.View
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.OnApplyWindowInsetsListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.fitnnestracker.R
+import com.fitnnestracker.adapters.WorkoutAdapter
+import com.fitnnestracker.databinding.ActivityMainBinding
+import com.fitnnestracker.models.Lesson
+import com.fitnnestracker.models.Workout
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager2.widget.ViewPager2;
-import com.fitnnestracker.R;
-import com.fitnnestracker.adapters.ViewPagerAdapter;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.android.material.appbar.MaterialToolbar;
+class MainActivity : AppCompatActivity() {
+    var binding: ActivityMainBinding? = null
 
-public class MainActivity extends AppCompatActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        this.enableEdgeToEdge()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding!!.getRoot())
 
-    private DrawerLayout drawerLayout;
-    private ViewPager2 viewPager;
-    private TabLayout tabLayout;
-    private NavigationView navigationView;
-    private MaterialToolbar toolbar;
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById<View?>(R.id.main)!!,
+            OnApplyWindowInsetsListener { v: View?, insets: WindowInsetsCompat? ->
+                val systemBars = insets!!.getInsets(WindowInsetsCompat.Type.systemBars())
+                v!!.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+                insets
+            })
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        initViews();
-        setSupportActionBar(toolbar);
-        setupDrawerLayout();
-        setupViewPager();
-        setupNavigationView();
-
+        binding!!.ExerciseList.setLayoutManager(
+            LinearLayoutManager(
+                this@MainActivity,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        )
+        binding!!.ExerciseList.setAdapter(WorkoutAdapter(this.data))
     }
 
-    public void setupDrawerLayout() {
-        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
-    }
+    private val data: ArrayList<Workout?>
+        get() {
+            val list = java.util.ArrayList<Workout?>()
+            list.add(
+                Workout(
+                    "Running",
+                    "You just woke up. It is a brand new day. The canvas is blank. How do you begin? Take 9 minutes to achieve your dream body",
+                    "9",
+                    "160",
+                    "pic_1",
+                    this.lesson1
+                )
+            )
+            list.add(
+                Workout(
+                    "Stretching",
+                    "You just woke up. It is a brand new day. The canvas is blank. How do you begin? Take 85 minutes to achieve your dream body",
+                    "85",
+                    "230",
+                    "pic_2",
+                    this.lesson2
+                )
+            )
+            list.add(
+                Workout(
+                    "Yoga",
+                    "You just woke up. It is a brand new day. The canvas is blank. How do you begin? Take 65 minutes to achieve your dream body",
+                    "65",
+                    "180",
+                    "pic_3",
+                    this.lesson3
+                )
+            )
+            return list
+        }
 
-    public void initViews() {
-        toolbar = findViewById(R.id.toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        viewPager = findViewById(R.id.view_pager);
-        tabLayout = findViewById(R.id.tab_layout);
-        navigationView = findViewById(R.id.nav_view);
-    }
+    private val lesson1: ArrayList<Lesson?>
+        get() {
+            val list = java.util.ArrayList<Lesson?>()
+            list.add(Lesson("Lesson 1", "03:46 ", "pic_1_1", "HBPMvFkpNgE"))
+            list.add(Lesson("Lesson 2", "03:41 ", "pic_1_2", "K6124WqiiPw"))
+            list.add(Lesson("Lesson 3", "01:57 ", "pic_1_3", "Zc08v4YYOeA"))
+            return list
+        }
 
-    public void setupViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        viewPager.setAdapter(adapter);
-        new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> {
-                    switch (position) {
-                        case 0:
-                            tab.setText("Exercise");
-                            break;
-                        case 1:
-                            tab.setText("Progress");
-                            break;
-                        case 2:
-                            tab.setText("Goals");
-                            break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + position);
-                    }
-                }).attach();
-    }
+    private val lesson2: ArrayList<Lesson?>
+        get() {
+            val list = java.util.ArrayList<Lesson?>()
+            list.add(Lesson("Lesson 1", "20:23 ", "pic_2_1", "L3eImBAXT7I"))
+            list.add(Lesson("Lesson 2", "18:27 ", "pic_2_2", "47Exgz07FLU"))
+            list.add(Lesson("Lesson 3", "32:25 ", "pic_2_3", "OmLx8tmaQ-4"))
+            list.add(Lesson("Lesson 4", "07:52 ", "pic_2_4", "w86EaLEoFRY"))
+            return list
+        }
 
-    public void setupNavigationView() {
-        navigationView.setNavigationItemSelectedListener(item -> {
-            int id = item.getItemId();
+    private val lesson3: ArrayList<Lesson?>
+        get() {
+            val list = java.util.ArrayList<Lesson?>()
+            list.add(Lesson("Lesson 1", "23:00 ", "pic_3_1", "v7AYKMP6rDE"))
+            list.add(Lesson("Lesson 2", "27:00 ", "pic_3_2", "Eml2xnoLpYE"))
+            list.add(Lesson("Lesson 3", "25:00 ", "pic_3_3", "v7SN-d4qXx0"))
+            list.add(Lesson("Lesson 4", "21:00 ", "pic_3_4", "LqXZ628YNj4"))
 
-            if (id == R.id.nav_home) {
-                viewPager.setCurrentItem(0);
-            } else if (id == R.id.nav_settings) {
-                startActivity(new Intent(this, SettingsActivity.class));
-            } else if (id == R.id.nav_about) {
-                startActivity(new Intent(this, AboutActivity.class));
-            }
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        });
-    }
+            return list
+        }
 }

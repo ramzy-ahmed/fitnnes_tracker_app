@@ -1,73 +1,43 @@
 package com.fitnnestracker.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Workout implements Parcelable {
+public class Workout implements Serializable {
     private int id;
-    private String type;
+    private String title;
+    private String discretion;
     private String duration;
     private String calories;
+    private String picUrl;
     private Date date;
 
-    public Workout() {}
+    private ArrayList<Lesson> lesson;
 
-    public Workout(String type, String duration, String calories, Date date) {
-        this.type = type;
+    public Workout(String title, String discretion, String duration, String calories, String picUrl, ArrayList<Lesson> lesson) {
+        this.title = title;
+        this.discretion = discretion;
         this.duration = duration;
         this.calories = calories;
-        this.date = date;
+        this.picUrl = picUrl;
+        this.lesson = lesson;
     }
 
-    protected Workout(Parcel in) {
-        id = in.readInt();
-        type = in.readString();
-        duration = in.readString();
-        calories = in.readString();
-        date = new Date(in.readLong());
+    public String getTitle() {
+        return title;
     }
 
-    public static final Creator<Workout> CREATOR = new Creator<>() {
-        @Override
-        public Workout createFromParcel(Parcel in) {
-            return new Workout(in);
-        }
-
-        @Override
-        public Workout[] newArray(int size) {
-            return new Workout[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(type);
-        dest.writeString(duration);
-        dest.writeString(calories);
-        dest.writeLong(date.getTime());
+    public String getDiscretion() {
+        return discretion;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setDiscretion(String discretion) {
+        this.discretion = discretion;
     }
 
     public String getDuration() {
@@ -86,11 +56,27 @@ public class Workout implements Parcelable {
         this.calories = calories;
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public ArrayList<Lesson> getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(ArrayList<Lesson> lesson) {
+        this.lesson = lesson;
     }
 }
